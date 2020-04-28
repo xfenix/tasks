@@ -22,6 +22,6 @@ jobs:
       with:
         python-version: 3.7
     - name: Setup packages
-      run: pip install pipenv && pipenv install
+      run: pip install pipenv && ls -la && pipenv install
     - name: Run tests
       run: pytest .

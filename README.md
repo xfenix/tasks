@@ -1,2 +1,4 @@
-# tasks
-Pile of various tasks
+Tasks pile
+===
+Pile of various tasks  
+Run `pytest` to check all the tasks

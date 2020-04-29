@@ -23,3 +23,7 @@ class BasicTask(abc.ABC):
         for one_test in self.fixtures:
             fn_result: typing.Any = self.task(one_test['input'])
             assert fn_result == one_test['result'], f'Expected: {one_test["result"]}, Returned: {fn_result}'
+
+
+def test_task_error():
+    BasicTask().task()

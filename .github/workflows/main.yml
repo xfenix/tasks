@@ -26,4 +26,4 @@ jobs:
     - name: Setup packages
       run: pip install pipenv && ls -la && pipenv install
     - name: Run tests
-      run: pipenv run pytest . --cov .
+      run: pipenv run pytest .

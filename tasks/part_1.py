@@ -27,9 +27,32 @@ class SortOddNumbersTask(base.BasicTask):
         return input_array
 
 
-class CompatStringTask:
+class CompatStringTask(base.BasicTask):
     """Task #2
 
     Level: easy
     Description: compat string
     """
+
+    fixtures: typing.List[typing.Dict[str, str]] = [
+        dict(input='AAAAABBBBCCCCCDEEE', result='A5B4C5DE3',),
+    ]
+
+    def task(self, input_str: str) -> str:
+        """Task body
+        """
+        output_str: typing.List = []
+        store_fn: typing.Callable = lambda char, counter:\
+            output_str.append(f'{char}{counter if counter > 1 else ""}')
+        current_char: str = ''
+        current_counter: int
+        for one_char in input_str:
+            if one_char != current_char:
+                if current_char:
+                    store_fn(current_char, current_counter)
+                current_char = one_char
+                current_counter = 1
+            else:
+                current_counter += 1
+        store_fn(current_char, current_counter)
+        return ''.join(output_str)

@@ -80,7 +80,8 @@ class CalculatePIFromRandomTask(base.BasicTask):
         Now back to our dimension, from 0 to 1 in X axis and from 0 to 1 in Y axis.
         Now we have 1/4 of cirle in 1/4 of square. To find PI in this, you need to divide
         circle area to square area (all two divided by 4). Those ratio similar to numbers of dots
-        in 1/4 of circle divided by all dots. So, formula will be like this:
+        in 1/4 of circle divided by all dots (because of uniform distribution).
+        So, formula will be like this:
 
         (PI * r**2)/4 / 4/4  =  points_in_circle/points
             and, simplify
@@ -98,7 +99,7 @@ class CalculatePIFromRandomTask(base.BasicTask):
         for _ in range(points):
             if random.random() ** 2 + random.random() ** 2 < 1:
                 points_in += 1
-        return 4 * (points_in/points)
+        return 4 * points_in/points
 
     @pytest.mark.parametrize('one_case', (
         dict(input=100, result_from=2.7, result_to=3.5),

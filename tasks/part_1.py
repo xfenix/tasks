@@ -13,7 +13,7 @@ class SortOddNumbersTask(base.BasicTask):
 
     Level: easy
     Description: sort array of numbers, where only odd numbers must be sorted
-    Must be in place
+    Constraints: must be in place
     """
 
     fixtures: typing.List[typing.Dict[str, typing.List[int]]] = [
@@ -67,8 +67,9 @@ class CompatStringTask(base.BasicTask):
 class CalculatePIFromRandomTask(base.BasicTask):
     """Task #3
 
-    You get N random points from 0 to 1 with uniform distribution,
-    you need to calculate PI number from this (approximately)
+    Level: medium to hard?
+    Description: You get N random points from 0 to 1 with uniform distribution,
+                 you need to calculate PI number from this (approximately)
     """
 
     def task(self, points: int) -> float:
@@ -99,16 +100,40 @@ class CalculatePIFromRandomTask(base.BasicTask):
         for _ in range(points):
             if random.random() ** 2 + random.random() ** 2 < 1:
                 points_in += 1
-        return 4 * points_in/points
+        return 4 * points_in / points
 
-    @pytest.mark.parametrize('one_case', (
-        dict(input=100, result_from=2.7, result_to=3.5),
-        dict(input=1000, result_from=3.0, result_to=3.3),
-        dict(input=100000, result_from=3.12, result_to=3.16),
-    ))
+    @pytest.mark.parametrize(
+        "one_case",
+        (
+            dict(input=100, result_from=2.7, result_to=3.5),
+            dict(input=1000, result_from=3.0, result_to=3.3),
+            dict(input=100000, result_from=3.12, result_to=3.16),
+        ),
+    )
     def test_basic(self, one_case):
         """Override basic test
         """
-        result: float = self.task(one_case['input'])
+        result: float = self.task(one_case["input"])
         print(f'Testing PI generator for {one_case["input"]} times, result: {result}')
-        assert one_case['result_from'] < result < one_case['result_to']
+        assert one_case["result_from"] < result < one_case["result_to"]
+
+
+class FindDuplicateTask(base.BasicTask):
+    """Task #4
+
+    Level: medium?
+    Description: given array n + 1 of numbers, where each item from 1 to n, find duplicate
+    Constraints:
+        Time complexity less then O(n^2)
+        Space complexity O(1)
+        Array must not be modified
+    """
+
+    fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
+        dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7,),
+    ]
+
+    def task(self, input_array: typing.List[int]) -> typing.List[int]:
+        """Task body
+        """
+        return 7

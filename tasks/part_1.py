@@ -24,9 +24,7 @@ class SortOddNumbersTask(base.BasicTask):
     def task(self, input_array: typing.List[int]) -> typing.List[int]:
         """Task body
         """
-        even_array: typing.Iterator[int] = sorted(
-            [one_item for one_item in input_array if one_item % 2]
-        )
+        even_array: typing.Iterator[int] = sorted([one_item for one_item in input_array if one_item % 2])
         for index, one_item in enumerate(input_array):
             input_array[index] = even_array.pop(0) if one_item % 2 else one_item
         return input_array
@@ -47,9 +45,7 @@ class CompatStringTask(base.BasicTask):
         """Task body
         """
         output_str: typing.List = []
-        store_fn: typing.Callable = lambda char, counter: output_str.append(
-            f'{char}{counter if counter > 1 else ""}'
-        )
+        store_fn: typing.Callable = lambda char, counter: output_str.append(f'{char}{counter if counter > 1 else ""}')
         current_char: str = ""
         current_counter: int
         for one_char in input_str:
@@ -126,14 +122,34 @@ class FindDuplicateTask(base.BasicTask):
     Constraints:
         Time complexity less then O(n^2)
         Space complexity O(1)
-        Array must not be modified
+        Array must not be modified (e.g. read only)
     """
 
     fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
         dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7,),
     ]
 
-    def task(self, input_array: typing.List[int]) -> typing.List[int]:
+    def task(self, input_array: typing.List[int]) -> int:
         """Task body
         """
         return 7
+
+
+class FindMissingMultipleTask(base.BasicTask):
+    """Task #5
+
+    Level: easy
+    Description: given array length n + 1 with 0 to n missed elements, need to find all of it
+    """
+
+    fixtures: typing.List[typing.Dict[str, typing.Set[int]]] = [
+        dict(input=[1, 2, 3, 5, 6, 8, 10], result={4, 7, 9},),
+        dict(input=[3, 4, 1, 9], result={2, 5, 6, 7, 8},),
+    ]
+
+    def task(self, input_array: typing.List[int]) -> typing.Set:
+        """Task body
+        """
+        min_element: int = min(input_array)  # O(n)
+        max_element: int = max(input_array)  # O(n)
+        return set(range(min_element, max_element + 1)) - set(input_array)  # O(n) + O(n)

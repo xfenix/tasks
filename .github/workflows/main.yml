@@ -30,8 +30,3 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true
-
-    - name: Run codacy-analysis-cli
-      uses: mrfyda/codacy-analysis-cli-action@master
-      with:
-        project-token: ${{ secrets.CODACITY_TOKEN }}

@@ -30,11 +30,3 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true
-
-    - name: Code Climate Coverage Action
-      uses: paambaati/codeclimate-action@v2.6.0
-      env:
-        CC_TEST_REPORTER_ID: e480b629874f76fa35ebcbe37f26840c1a5f07ab877c45bbe0baf5431f1b2856
-      with:
-        coverageCommand: echo 'pass'
-        coverageLocations: ./coverage.xml

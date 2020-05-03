@@ -126,13 +126,33 @@ class FindDuplicateTask(base.BasicTask):
     """
 
     fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
-        dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7,),
+        dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7),
+        dict(input=[1, 2, 2, 2, 3, 4, 5], result=2),
+        dict(input=[1, 2, 3, 4, 5, 4], result=4),
+        dict(input=[3, 1, 3, 4, 2], result=3),
     ]
 
     def task(self, input_array: typing.List[int]) -> int:
-        """Task body.
+        """This solution also very hard to understand.
+        It's Ffloyd algorithm for cycle detection.
+        It said that if we have list with cycle in it, then we can go through it with two
+        pointers - usual (1 -> 2 -> 3...) and fast (usual x 2, 1 -> 3 ...). They call
+        turtoise and hair. When they met, you must reset fast to beggining of the array, and left
+        in meting point slow one. Then you need to start looping again while they met.
+        And now, when they met, it is the start of the loop (in our case - dupliacte number)
         """
-        return 7
+        turtoise: int = input_array[0]
+        hair: int = input_array[0]
+        while True:
+            turtoise = input_array[turtoise]
+            hair = input_array[input_array[hair]]
+            if turtoise == hair:
+                break
+        hair: int = input_array[0]
+        while hair != turtoise:
+            hair = input_array[hair]
+            turtoise = input_array[turtoise]
+        return hair
 
 
 class FindMissingMultipleTask(base.BasicTask):

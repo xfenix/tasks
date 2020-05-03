@@ -1,4 +1,4 @@
-"""This is part1 of infinite tasks pile
+"""This is part1 of infinite tasks pile.
 """
 import random
 import typing
@@ -9,7 +9,7 @@ from . import base
 
 
 class SortOddNumbersTask(base.BasicTask):
-    """Task #1
+    """Task #1.
 
     Level: easy
     Description: sort array of numbers, where only odd numbers must be sorted
@@ -31,7 +31,7 @@ class SortOddNumbersTask(base.BasicTask):
 
 
 class CompatStringTask(base.BasicTask):
-    """Task #2
+    """Task #2.
 
     Level: easy
     Description: compat string
@@ -61,7 +61,7 @@ class CompatStringTask(base.BasicTask):
 
 
 class CalculatePIFromRandomTask(base.BasicTask):
-    """Task #3
+    """Task #3.
 
     Level: medium to hard?
     Description: You get N random points from 0 to 1 with uniform distribution,
@@ -107,7 +107,7 @@ class CalculatePIFromRandomTask(base.BasicTask):
         ),
     )
     def test_basic(self, one_case):
-        """Override basic test
+        """Override basic test.
         """
         result: float = self.task(one_case["input"])
         print(f'Testing PI generator for {one_case["input"]} times, result: {result}')
@@ -115,7 +115,7 @@ class CalculatePIFromRandomTask(base.BasicTask):
 
 
 class FindDuplicateTask(base.BasicTask):
-    """Task #4
+    """Task #4.
 
     Level: medium?
     Description: given array n + 1 of numbers, where each item from 1 to n, find duplicate
@@ -130,13 +130,13 @@ class FindDuplicateTask(base.BasicTask):
     ]
 
     def task(self, input_array: typing.List[int]) -> int:
-        """Task body
+        """Task body.
         """
         return 7
 
 
 class FindMissingMultipleTask(base.BasicTask):
-    """Task #5
+    """Task #5.
 
     Level: easy
     Description: given array length n + 1 with 0 to n missed elements, need to find all of it
@@ -148,7 +148,7 @@ class FindMissingMultipleTask(base.BasicTask):
     ]
 
     def task(self, input_array: typing.List[int]) -> typing.Set:
-        """Task body
+        """Task body.
         """
         min_element: int = min(input_array)  # O(n)
         max_element: int = max(input_array)  # O(n)

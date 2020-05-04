@@ -89,7 +89,7 @@ class CalculatePIFromRandomTask(base.BasicTask):
 
         Now we must calculare points_in_circle, to do so we need to draw triangle.
         If hypotenuse will be 1 or less - then point in circle. Formula of this is:
-    
+
         hypotenuse = sqrt(random_x ** 2 + random_y ** 2)
 
         But we talking about radius of size 1, so square root of 1 is one, less then 1 - less then 1, else more.

@@ -92,3 +92,35 @@ class FindUniqueInDuplicatesTask(base.BasicTask):
         for one_item in input_array:
             unique ^= one_item
         return unique
+
+
+class FindTwoSummInSortedArrayTask(base.BasicTask):
+    """Task #8.
+
+    Level: easy
+    Description: given sorted array of integers from -n to n, also given m - sum of two integers.
+                 Need to find those integers
+    """
+
+    fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
+        dict(input=dict(array=(1, 2, 3, 4, 7, 9), sum=8), result=(1, 7)),
+        dict(input=dict(array=(1, 2, 3), sum=15), result=None),
+        dict(input=dict(array=(-1000, -200, 10, 15, 44), sum=59), result=(15, 44)),
+        dict(input=dict(array=(1, 2, 4, 4), sum=8), result=(4, 4)),
+    ]
+
+    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.List]:
+        """Task body. Time complexity - O(n)
+        """
+        lo: int = 0
+        hi: int = len(input_data["array"]) - 1
+        sub_summ: int = 0
+        while lo < hi:
+            sub_summ = input_data["array"][lo] + input_data["array"][hi]
+            if sub_summ == input_data["sum"]:
+                return (input_data["array"][lo], input_data["array"][hi])
+            elif sub_summ < input_data["sum"]:
+                lo += 1
+            else:
+                hi -= 1
+        return None

@@ -110,7 +110,9 @@ class FindTwoSummInSortedArrayTask(base.BasicTask):
     ]
 
     def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.List]:
-        """Task body. Time complexity - O(n)
+        """Task body.
+        Time complexity - O(n)
+        Space complexity - O(1)
         """
         lo: int = 0
         hi: int = len(input_data["array"]) - 1
@@ -123,4 +125,34 @@ class FindTwoSummInSortedArrayTask(base.BasicTask):
                 lo += 1
             else:
                 hi -= 1
+        return None
+
+
+class FindTwoSummInArrayTask(base.BasicTask):
+    """Task #9.
+
+    Level: easy
+    Description: given array of integers from -n to n, also given m - sum of two integers.
+                 Need to find those integers
+    """
+
+    fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
+        dict(input=dict(array=(2, 1, 3, 4, 7, 9, -55), sum=8), result=(1, 7)),
+        dict(input=dict(array=(1, 2, 3), sum=15), result=None),
+        dict(input=dict(array=(-200, 44, -1000, 10, 15, 44), sum=59), result=(15, 44)),
+        dict(input=dict(array=(4, 2, 1, 4), sum=8), result=(4, 4)),
+    ]
+
+    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.List]:
+        """Task body.
+        Time complexity - O(n)
+        Space complexity - O(n)
+        """
+        previous_numbers: typing.Dict[int, None] = {}
+        diff: int
+        for one_item in input_data["array"]:
+            diff = input_data["sum"] - one_item
+            if diff in previous_numbers:
+                return tuple(sorted((diff, one_item)))
+            previous_numbers[one_item] = None
         return None

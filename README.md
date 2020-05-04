@@ -7,5 +7,9 @@ Tasks pile
 Pile of various tasks  
 Run `pytest` to check all the tasks
 
+## CLI
+Run `python -m tasks list` to show all tasks in chrono order and places in files for them.
+It maybe useful, because i group tasks in files by other criteria
+
 ## Why so many badges?
 Because it is kinda funny, why not?

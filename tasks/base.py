@@ -15,7 +15,7 @@ class BasicTask(abc.ABC):
     def task(self, input_data: typing.Any) -> typing.Any:
         """Body for task
         """
-        raise NotImplemented()
+        raise NotImplementedError()
 
     def test_basic(self):
         """Basic test.

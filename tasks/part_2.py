@@ -5,7 +5,7 @@ import typing
 
 import pytest
 
-from . import base
+from tasks import base
 
 
 class CompatStringTask(base.BasicTask):

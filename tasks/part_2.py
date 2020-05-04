@@ -17,6 +17,9 @@ class CompatStringTask(base.BasicTask):
 
     fixtures: typing.List[typing.Dict[str, str]] = [
         dict(input="AAAAABBBBCCCCCDEEE", result="A5B4C5DE3",),
+        dict(input="AB", result="AB",),
+        dict(input="EECCD", result="E2C2D",),
+        dict(input="ZZZZZZZZZZ", result="Z10",),
     ]
 
     def task(self, input_str: str) -> str:

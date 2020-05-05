@@ -85,7 +85,7 @@ class FindUniqueInDuplicatesTask(base.BasicTask):
         dict(input=[1, 2, 3, 3, 2, 1, 5], result=5),
     ]
 
-    def task(self, input_array: typing.List[int]) -> typing.Set:
+    def task(self, input_array: typing.List[int]) -> int:
         """Task body.
         """
         unique: int = 0
@@ -153,6 +153,6 @@ class FindTwoSummInArrayTask(base.BasicTask):
         for one_item in input_data["array"]:
             diff = input_data["sum"] - one_item
             if diff in previous_numbers:
-                return tuple(sorted((diff, one_item)))
+                return sorted((diff, one_item))
             previous_numbers[one_item] = None
         return None

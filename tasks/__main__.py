@@ -13,8 +13,6 @@ parser_inst: argparse.ArgumentParser = argparse.ArgumentParser(description="CLI 
 parser_inst.add_argument("action")
 cli_arguments: argparse.Namespace = parser_inst.parse_args()
 
-print(cli_arguments.action)
-
 if cli_arguments.action == "list":
     docs_map: typing.Dict = {}
     for one_mod_path in current_dir.glob("part_*.py"):
@@ -26,7 +24,7 @@ if cli_arguments.action == "list":
                     first_line: int = inspect.getsourcelines(one_class_obj)[1]
                     inner_key: int = int(inspect.getdoc(one_class_obj).split("\n")[0].rstrip(".").lstrip("Task #"))
                     if inner_key in docs_map:
-                        raise Exception('You wrong! Foolish man, you forgot task numbers and now there is duplicates')
+                        raise Exception("You wrong! Foolish man, you forgot task numbers and now there is duplicates")
                     docs_map[
                         inner_key
                     ] = f"{inspect.getdoc(one_class_obj).replace(' ' * 4, '')}\n\nWhere: {one_mod_path}:{first_line}"

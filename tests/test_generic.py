@@ -8,6 +8,8 @@ from unittest import mock
 
 import pytest
 
+from tasks import base
+
 
 @pytest.mark.parametrize("action_value", ["_no_action_lol", "list"])
 def test_main_cli(monkeypatch, action_value):
@@ -24,11 +26,22 @@ def test_main_cli(monkeypatch, action_value):
         importlib.reload(module)
 
 
-def test_base(monkeypatch):
-    """Test for base.py.
+def test_base_task():
+    """Test for BasicTask.
     """
-    from tasks import base
-
     new_class: base.BasicTask = base.BasicTask()
     with pytest.raises(NotImplementedError):
         new_class.task(random.randrange(10 ** 2, 10 ** 4))
+
+
+@pytest.mark.parametrize("one_case", ((1, 2, 3), (10, 20, 30), range(1, 201)))
+def test_linked_list_creator(one_case):
+    """Test for linked list creator.
+    """
+    one_case: typing.List = list(one_case)
+    cursor: int = 0
+    linked_list: base.LinkedListNode = base.build_linked_list(one_case)
+    while linked_list != None:
+        assert linked_list.value == one_case[cursor]
+        linked_list = linked_list.next
+        cursor += 1

@@ -31,22 +31,22 @@ class FindDuplicateTask(base.BasicTask):
         It's Ffloyd algorithm for cycle detection.
         It said that if we have list with cycle in it, then we can go through it with two
         pointers - usual (1 -> 2 -> 3...) and fast (usual x 2, 1 -> 3 ...). They call
-        turtoise and hair. When they met, you must reset fast to beggining of the array, and left
+        turtoise and hare. When they met, you must reset fast to beggining of the array, and left
         in meting point slow one. Then you need to start looping again while they met.
         And now, when they met, it is the start of the loop (in our case - dupliacte number)
         """
         turtoise: int = input_array[0]
-        hair: int = input_array[0]
+        hare: int = input_array[0]
         while True:
             turtoise = input_array[turtoise]
-            hair = input_array[input_array[hair]]
-            if turtoise == hair:
+            hare = input_array[input_array[hare]]
+            if turtoise == hare:
                 break
-        hair: int = input_array[0]
-        while hair != turtoise:
-            hair = input_array[hair]
+        hare: int = input_array[0]
+        while hare != turtoise:
+            hare = input_array[hare]
             turtoise = input_array[turtoise]
-        return hair
+        return hare
 
 
 class FindMissingMultipleTask(base.BasicTask):

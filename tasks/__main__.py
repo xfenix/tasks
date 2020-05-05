@@ -16,18 +16,20 @@ cli_arguments: argparse.Namespace = parser_inst.parse_args()
 if cli_arguments.action == "list":
     docs_map: typing.Dict = {}
     for one_mod_path in current_dir.glob("part_*.py"):
-        if one_mod_path.is_file():
-            one_module: types.ModuleType = importlib.import_module(f".{one_mod_path.stem}", package="tasks")
-            classes_list: typing.List = inspect.getmembers(one_module, inspect.isclass)
-            for class_title, one_class_obj in classes_list:
-                if class_title.endswith("Task"):
-                    first_line: int = inspect.getsourcelines(one_class_obj)[1]
-                    inner_key: int = int(inspect.getdoc(one_class_obj).split("\n")[0].rstrip(".").lstrip("Task #"))
-                    if inner_key in docs_map:
-                        raise Exception("You wrong! Foolish man, you forgot task numbers and now there is duplicates")
-                    docs_map[
-                        inner_key
-                    ] = f"{inspect.getdoc(one_class_obj).replace(' ' * 4, '')}\n\nWhere: {one_mod_path}:{first_line}"
+        if not one_mod_path.is_file():
+            continue
+        one_module: types.ModuleType = importlib.import_module(f".{one_mod_path.stem}", package="tasks")
+        classes_list: typing.List = inspect.getmembers(one_module, inspect.isclass)
+        for class_title, one_class_obj in classes_list:
+            if not class_title.endswith("Task"):
+                continue
+            first_line: int = inspect.getsourcelines(one_class_obj)[1]
+            inner_key: int = int(inspect.getdoc(one_class_obj).split("\n")[0].rstrip(".").lstrip("Task #"))
+            if inner_key in docs_map:
+                raise Exception("You wrong! Foolish man, you forgot task numbers and now there is duplicates")
+            docs_map[
+                inner_key
+            ] = f"{inspect.getdoc(one_class_obj).replace(' ' * 4, '')}\n\nWhere: {one_mod_path}:{first_line}"
     for one_key in sorted(docs_map.keys()):
         print(f'{docs_map[one_key]}\n{"="*30}')
 else:

@@ -21,8 +21,8 @@ class FindDuplicateTask(base.BasicTask):
     """
 
     fixtures: typing.List[typing.Dict[str, typing.Union[typing.List[int], int]]] = [
-        dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7),
-        dict(input=[1, 2, 2, 2, 3, 4, 5], result=2),
+        dict(input=[1, 2, 3, 4, 7, 7, 7, 8, 5], result=7),
+        dict(input=[1, 2, 2, 4, 3], result=2),
         dict(input=[1, 2, 3, 4, 5, 4], result=4),
         dict(input=[3, 3, 3, 4, 2], result=3),
     ]

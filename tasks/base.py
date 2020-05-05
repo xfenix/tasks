@@ -36,10 +36,12 @@ class LinkedListNode:
     next: LinkedListNode = None
 
 
-def iter_to_linked(list_of_values: typing.List[typing.Any]) -> LinkedListNode:
+def iter_to_linked(list_of_values: typing.Iterable[typing.Any]) -> LinkedListNode:
     """Helper for building linked lists
     """
-    inner_list: typing.List = list_of_values[:]
+    inner_list: typing.List = []
+    for one_item in list_of_values:
+        inner_list.append(one_item)
     head_of_list: LinkedListNode = LinkedListNode(inner_list.pop(0))
     current_pointer: LinkedListNode = head_of_list
     for one_item in inner_list:

@@ -35,21 +35,24 @@ def test_base_task() -> None:
         new_class.task(random.randrange(10 ** 2, 10 ** 4))
 
 
-@pytest.mark.parametrize("one_case", ((1, 2, 3), (10, 20, 30), range(1, 201)))
+@pytest.mark.parametrize("one_case", ((1, 2, 3), (10, 20, 30), range(1, 201), []))
 def test_linked_list_creator(one_case: typing.Tuple) -> None:
     """Test for linked list creator.
     """
     one_case: typing.List = list(one_case)
     cursor: int = 0
     linked_list: base.LinkedListNode = base.iter_to_linked(one_case)
+    assert linked_list
+    if not one_case:
+        return
     while linked_list != None:
         assert linked_list.value == one_case[cursor]
         linked_list = linked_list.next
         cursor += 1
 
 
-@pytest.mark.parametrize("shot_number", range(random.randrange(10, 20)))
-def test_linked_list_to_list(shot_number: int) -> None:
+@pytest.mark.parametrize("_", range(random.randrange(10, 20)))
+def test_linked_list_to_list(_: int) -> None:
     """Test for linked list creator.
     """
     fake_list: base.LinkedListNode = base.iter_to_linked(list(range(random.randrange(100, 10 ** 3))))

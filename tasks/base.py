@@ -42,7 +42,7 @@ def iter_to_linked(list_of_values: typing.Iterable[typing.Any]) -> LinkedListNod
     inner_list: typing.List = []
     for one_item in list_of_values:
         inner_list.append(one_item)
-    head_of_list: LinkedListNode = LinkedListNode(inner_list.pop(0))
+    head_of_list: LinkedListNode = LinkedListNode(inner_list.pop(0) if inner_list else None)
     current_pointer: LinkedListNode = head_of_list
     for one_item in inner_list:
         current_pointer.next = LinkedListNode(one_item)

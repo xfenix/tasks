@@ -15,7 +15,7 @@ class GetNthFromLinkedListEndTask(base.BasicTask):
     Example: list: 1 -> 2 -> 20 -> 4 -> 5, n: 3, returns: 20
     """
 
-    def task(self, linked_list: str, nth: str) -> typing.Optional[int]:
+    def task(self, linked_list: str, nth: int) -> typing.Optional[int]:
         """Task body
         """
         first_pointer: base.LinkedList = linked_list
@@ -34,10 +34,11 @@ class GetNthFromLinkedListEndTask(base.BasicTask):
         (
             dict(input=dict(list=base.iter_to_linked([1, 2, 3, 4, 5, 6]), nth=2), result=5),
             dict(input=dict(list=base.iter_to_linked([10, 30, 40]), nth=1), result=40),
+            dict(input=dict(list=base.iter_to_linked([]), nth=122), result=None),
         ),
     )
     def test_basic(
-        self, one_case: typing.Dict[str, typing.Union[int, typing.Dict[str, typing.Union[int, base.LinkedListNode]]]]
+        self, one_case: typing.Dict[str, typing.Union[int, None, typing.Dict[str, typing.Union[int, base.LinkedListNode]]]]
     ) -> None:
         """Basic test.
         """

@@ -12,7 +12,8 @@ class FindDuplicateTask(base.BasicTask):
     """Task #4.
 
     Level: medium?
-    Description: given array n + 1 of numbers, where each item from 1 to n, find duplicate
+    Description: given array n + 1 of numbers, where each number is integer from 1 to n, find duplicate.
+                 There is only one number is duplicated, but it can be duplicated more then once
     Constraints:
         Time complexity less then O(n^2)
         Space complexity O(1)
@@ -23,7 +24,7 @@ class FindDuplicateTask(base.BasicTask):
         dict(input=[1, 2, 3, 4, 5, 6, 7, 8, 7, 7], result=7),
         dict(input=[1, 2, 2, 2, 3, 4, 5], result=2),
         dict(input=[1, 2, 3, 4, 5, 4], result=4),
-        dict(input=[3, 1, 3, 4, 2], result=3),
+        dict(input=[3, 3, 3, 4, 2], result=3),
     ]
 
     def task(self, input_array: typing.List[int]) -> int:

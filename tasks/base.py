@@ -19,7 +19,7 @@ class BasicTask(abc.ABC):
         """
         raise NotImplementedError()
 
-    def test_basic(self):
+    def test_basic(self) -> None:
         """Basic test.
         """
         for one_test in self.fixtures:
@@ -36,7 +36,7 @@ class LinkedListNode:
     next: LinkedListNode = None
 
 
-def build_linked_list(list_of_values: typing.List[typing.Any]) -> LinkedListNode:
+def iter_to_linked(list_of_values: typing.List[typing.Any]) -> LinkedListNode:
     """Helper for building linked lists
     """
     inner_list: typing.List = list_of_values[:]
@@ -46,3 +46,14 @@ def build_linked_list(list_of_values: typing.List[typing.Any]) -> LinkedListNode
         current_pointer.next = LinkedListNode(one_item)
         current_pointer = current_pointer.next
     return head_of_list
+
+
+def linked_to_list(linked_list: LinkedListNode) -> typing.List:
+    """Helper for linked_list -> list convertion
+    """
+    pointer: LinkedListNode = linked_list
+    result_list: typing.List = []
+    while pointer != None:
+        result_list.append(pointer.value)
+        pointer = pointer.next
+    return result_list

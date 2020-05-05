@@ -40,7 +40,7 @@ def test_linked_list_creator(one_case):
     """
     one_case: typing.List = list(one_case)
     cursor: int = 0
-    linked_list: base.LinkedListNode = base.build_linked_list(one_case)
+    linked_list: base.LinkedListNode = base.iter_to_linked(one_case)
     while linked_list != None:
         assert linked_list.value == one_case[cursor]
         linked_list = linked_list.next

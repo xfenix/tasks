@@ -110,7 +110,7 @@ class CalculatePIFromRandomTask(base.BasicTask):
             dict(input=100000, result_from=3.12, result_to=3.16),
         ),
     )
-    def test_basic(self, one_case):
+    def test_basic(self, one_case: typing.Dict[str, typing.Union[float, int]]) -> None:
         """Override basic test.
         """
         result: float = self.task(one_case["input"])
@@ -152,7 +152,7 @@ class FindSubstringInStringTask(base.BasicTask):
             dict(haystack="help", needle="a", result=-1),
         ),
     )
-    def test_basic(self, one_case):
+    def test_basic(self, one_case: typing.Dict[str, typing.Union[str, int]]) -> None:
         """Basic test.
         """
         fn_result: int = self.task(one_case["haystack"], one_case["needle"])

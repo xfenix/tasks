@@ -109,7 +109,7 @@ class FindTwoSummInSortedArrayTask(base.BasicTask):
         dict(input=dict(array=(1, 2, 4, 4), sum=8), result=(4, 4)),
     ]
 
-    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.List]:
+    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.Tuple]:
         """Task body.
         Time complexity - O(n)
         Space complexity - O(1)
@@ -143,7 +143,7 @@ class FindTwoSummInArrayTask(base.BasicTask):
         dict(input=dict(array=(4, 2, 1, 4), sum=8), result=(4, 4)),
     ]
 
-    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.List]:
+    def task(self, input_data: typing.Dict[str, typing.Union[typing.List, int]]) -> typing.Optional[typing.Tuple]:
         """Task body.
         Time complexity - O(n)
         Space complexity - O(n)
@@ -153,6 +153,6 @@ class FindTwoSummInArrayTask(base.BasicTask):
         for one_item in input_data["array"]:
             diff = input_data["sum"] - one_item
             if diff in previous_numbers:
-                return sorted((diff, one_item))
+                return tuple(sorted((diff, one_item)))
             previous_numbers[one_item] = None
         return None

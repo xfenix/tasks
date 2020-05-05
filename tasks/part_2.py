@@ -56,7 +56,7 @@ class SortOddNumbersTask(base.BasicTask):
 
     def task(self, input_array: typing.List[int]) -> typing.List[int]:
         """Task body.
-        pop(0) used for the one-liner impression. Better solution will be a deck, and more better - just second_index
+        pop(0) used for the one-liner impression. Better solution will be a deque, and more better - just second_index
         """
         even_array: typing.Iterator[int] = sorted([one_item for one_item in input_array if one_item % 2])
         for index, one_item in enumerate(input_array):

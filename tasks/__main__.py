@@ -24,7 +24,9 @@ if cli_arguments.action == "list":
             for class_title, one_class_obj in classes_list:
                 if class_title.endswith("Task"):
                     first_line: int = inspect.getsourcelines(one_class_obj)[1]
-                    inner_key: str = inspect.getdoc(one_class_obj).split("\n")[0].rstrip(".").lstrip("Task #")
+                    inner_key: int = int(inspect.getdoc(one_class_obj).split("\n")[0].rstrip(".").lstrip("Task #"))
+                    if inner_key in docs_map:
+                        raise Exception('You wrong! Foolish man, you forgot task numbers and now there is duplicates')
                     docs_map[
                         inner_key
                     ] = f"{inspect.getdoc(one_class_obj).replace(' ' * 4, '')}\n\nWhere: {one_mod_path}:{first_line}"
